@@ -1,0 +1,2 @@
+#!/bim/bash
+echo -e {a..z}{a..z}"\n" | grep -v "oo"
