@@ -1,34 +1,33 @@
-# Loops, conditions and parsing
+# Regular expression
 ---
-Project done during ALX Software Engineering Scholarship 2022 at Alx Students Education. It aims to learn about loops (while, until and for), condition statements (`if`, `else`, `elif` and `case`), shebangs and how to create SSH keys with **Bash**.
+Project done during ALX Software Engineering Scholarship 2022 at Alx Students Education. It aims to advance our skill using regular expression using Oniguruma, a regular expression library that which is used by Ruby by default.
+
+![](https://camo.githubusercontent.com/f2cf1e37487920f371229a1f5996db307704f8b8d78b59e045b2d3bb57994d4c/68747470733a2f2f7777772e6b696e646c656d616e2e636f2e756b2f626c6f672f323031352f696e74726f2d746f2d727562792d726567756c61722d65787072657373696f6e732f727562756c61722e706e67)
 ---
-# More Info
-[Shellcheck](https://github.com/koalaman/shellcheck)
-Shellcheck is a tool that will help you write proper Bash scripts. It will make recommendations on your syntax and semantics and provide advice on edge cases that you might not have thought about. Shellcheck is your friend! All your Bash scripts must pass Shellcheck without any error or you will not get any points on the task.
 
-Shellcheck is available on the school’s computers. If you want to use it on your own computer, here is how to install it.
 
-Examples:
-
-Not passing Shellcheck:
-![](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/251/Vxotqyj.png)
-
-passing Shellcheck:
-![](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/251/ubHWxDU.png)
-
-**Resorces**
+# **More on Onigurima**
 ---
 ---
 
 Read or watch 
 
-- [Loops sample](https://alx-intranet.hbtn.io/rltoken/wT98UJfv_E2tk4yP9PcLLw)
-- [Variable assignment and arithmetic](https://alx-intranet.hbtn.io/rltoken/olvOKX699pq50rkHRE5cSA)
-- [Comparison operators](https://alx-intranet.hbtn.io/rltoken/HxohzllkOWh0t4dy_HptIQ)
-- [File test operators](https://alx-intranet.hbtn.io/rltoken/g8of2ABPEJfCNtPrDQaqVw)
-- [Make your scripts portable](https://alx-intranet.hbtn.io/rltoken/O0Ay21p7tDhfLMsYbtAKug)
-- [SSH Key Authentication | How to Create SSH Key Pairs](https://alx-intranet.hbtn.io/rltoken/PXriGT0IKaSXC7L5l0CVag)
-  
+- [http://www.regular-expressions.info/](https://alx-intranet.hbtn.io/rltoken/pO2p6CyTb6-hgE67yAq0KQ)
+- [http://www.w3schools.com/jsref/jsref_obj_regexp.asp](http://www.w3schools.com/jsref/jsref_obj_regexp.asp)
+- [Ruby]( http://rubular.com/)
+- [PHP/Javascript/Python]( https://regex101.com/)
+
+
+**RESOURCES**
+---
+**Read or watch:**
+
+- [Regular expressions - basics](https://alx-intranet.hbtn.io/rltoken/6VeaVMaugIxcFAwA27TBdQ)
+- [Regular expressions - advanced](https://alx-intranet.hbtn.io/rltoken/rntjh3-3S86zt0Qy28L10w)
+- [Rubular is your best friend](https://alx-intranet.hbtn.io/rltoken/RGkVuw1lZ_hoCCbLsiOAhg)
+- [Use a regular expression against a problem: now you have 2 problems](https://alx-intranet.hbtn.io/rltoken/Vwm8lpMUGa4x_FBtlyUQ8g)
+- [Learn Regular Expressions with simple, interactive exercises](https://alx-intranet.hbtn.io/rltoken/XsQ6rzS1uy-E6bnswUqIKg)
+
   Technology
  ---
 ---
@@ -40,21 +39,12 @@ Read or watch
 ---
 | Filename  | Description |
 | --------- | ----------- |
-|` 0-RSA_public_key.pub` | File that stores a RSA public key to access servers via SSH |
-| `1-for_best_school`	|Displays Best School 10 times with a for loop|
-|`2-while_best_school`|	Displays Best School 10 times with a while loop|
-|`3-until_best_school`|	Displays Best School 10 times with an until loop|
-|`4-if_9_say_hi`|	Displays Best School 10 times and displays Hi for the 9th iteration|
-|`5-4_bad_luck_8_is_your_chance`|	Loops from 1 to 10 and displays Best School, except for 4th and 8th iteration which displays bad luck and good luck, respectively|
-|`6-superstitious_numbers`|	Displays numbers from 1 to 20 and displays bad luck from China, bad luck from Japan and bad luck from Italy for the 4th, 9th and 17th iteration, respectively|
-|`7-cloc`|	Displays the time for 12 hours and 59 minutes
-|`8-for_ls`|	Displays the content of the current directory in a list format|
-|`9-to_file_or_not_to_file`|	Gives information about the school file|
-|`10-fizzbuzz`|	Displays the fizzbuzz sequence|
-|`100-read_and_cut`|	Displays the content of the file /etc/passwd|
-|`101-tell_the_story_of_passwd`|	Displays the content of the file /etc/passwd with an specific message|
-|`102-lets_parse_apache_logs`|	Displays the visitor IP along with the HTTP status code from an Apache log file|
-|`103-dig_the-data`|	Groups visitors by IP and HTTP status code and displays the occurrences, from the greatest to the lowest number|
----
-
-
+|`0-simply_match_school.rb` | The regular expression must match `School `|
+| `1-repetition_token_0.rb`	|A regular expression that matches `hbttn`|
+|`2-repetition_token_1.rb`|	A regular expression that matches `hbttn` and `htn`|
+|`3-repetition_token_2.rb`|	A regular expression that matches `hbtn`, where the letter `t` can be replied|
+|`4-repetition_token_3.rb`|	A regular expression that matches `hbtn` with or without `t`|
+|`5-beginning_and_end.rb`|	A regular expression that matches with a word that starts with `h` and ends with `n` |
+|`6-phone_number.rb`|	A regular expression that match with 10 digit phone number|
+|`7-OMG_WHY_ARE_YOU_SHOUTING.rb`|	A regular expression that only matches capital letters |
+|`100-textme.rb`| Filters information of a log file |
