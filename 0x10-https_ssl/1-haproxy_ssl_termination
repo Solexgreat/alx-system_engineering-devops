@@ -12,20 +12,16 @@ global
         ca-base /etc/ssl/certs
         crt-base /etc/ssl/private
 
-        # Default ciphers to use on SSL-enabled listening sockets.
-        # For more information, see ciphers(1SSL). This list is from:
-        #  https://hynek.me/articles/hardening-your-web-servers-ssl-ciphers/
-        # An alternative list with additional directives can be obtained from
-        #  https://mozilla.github.io/server-side-tls/ssl-config-generator/?server=haproxy
-        ssl-default-bind-ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:RSA+AESGCM:RSA+AES:!aNULL:!MD5:!DSS
-        ssl-default-bind-options no-sslv3
+        # See: https://ssl-config.mozilla.org/#server=haproxy&server-version=2.0.3&config=intermediate
+        ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384
+        ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+        ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
 
 defaults
         log     global
         mode    http
         option  httplog
         option  dontlognull
-        option  forwardfor
         timeout connect 5000
         timeout client  50000
         timeout server  50000
@@ -37,18 +33,23 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend http
+frontend http_front
+        #mode http
         bind *:80
-        http-request set-header X-Forwarded-Proto http
-        default_backend prideland-alx-backend
 
-frontend www-https
-        bind *:443 ssl crt /etc/haproxy/ssl/www.prideland.tech.pem
-        http-request set-header X-Forwarded-Proto https
-        default_backend prideland-alx-backend
+        bind *:443 ssl crt /etc/ssl/solexgreat.tech/solexgreat.tech.pem
 
-backend prideland-alx-backend
+        redirect scheme https code 301 if !{ ssl_fc }
+
+        #stats uri /haproxy?stats
+        acl letencrypt-acl path_beg /.well-known/acme-chanllenge
+        use_backend letencrypt-backend if letencrypt-acl
+        default_backend http_back
+
+backend letencrypt-backend
+        server letencrypt 127.0.0.1:8888
+
+backend http_back
         balance roundrobin
-        redirect scheme https if !{ ssl_fc }
-        server 45650-web-01 3.81.28.4:80 check
-        server 45650-web-02 100.25.191.46:80 check
+        server 46310-web-01 34.204.206.90:80 check
+        server 46310-web-02 52.86.174.72:80 check
