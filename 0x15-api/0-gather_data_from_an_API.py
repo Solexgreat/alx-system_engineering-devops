@@ -6,25 +6,25 @@ import requests
 import sys
 
 if __name__ == "__main__":
-	
-    userId = sys.argv[1]
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
-                        .format(userId))
+    
+    user = 'users/{}'.format(sys.argv[1])
+    res = requests.get('https://jsonplaceholder.typicode.com/'+ user +'')
+    name = res.json().get('name')
 
-    name = user.json().get('name')
+    todo = 'todos?{}'.format(sys.argv[1])
+    res = requests.get('https://jsonplaceholder.typicode.com/'+ todo +'')
+    j_son = res.json()
+    c_task = []
+    d_task = []
+    for task in j_son:
+        if task.get('completed') is True and task.get('userId') == 2:
+            c_task.append(task)
+            d_task.append(task)
+        elif task.get('completed') is False and task.get('userId') == 2:
+            d_task.append(task)
 
-    todos = requests.get('https://jsonplaceholder.typicode.com/todos')
-    totalTasks = 0
-    completed = 0
 
-    for task in todos.json():
-        if task.get('userId') == int(userId):
-            totalTasks += 1
-            if task.get('completed'):
-                completed += 1
+    print ("Employee {} is done with task{}/{}:".format(name, len(c_task), len(d_task)))
 
-    print('Employee {} is done with tasks({}/{}):'
-          .format(name, completed, totalTasks))
-
-    print('\n'.join(["\t " + task.get('title') for task in todos.json()
-          if task.get('userId') == int(userId) and task.get('completed')]))
+    for keye in c_task:
+        print ("\t {}".format(keye.get('title')))
