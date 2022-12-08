@@ -16,10 +16,10 @@ if __name__ == "__main__":
     c_task = []
     d_task = []
     for task in j_son:
-        if task.get('completed') is True and task.get('userId') == 2:
+        if task.get('completed') is True and task.get('userId') == int(sys.argv[1]):
             c_task.append(task)
             d_task.append(task)
-        elif task.get('completed') is False and task.get('userId') == 2:
+        elif task.get('completed') is False and task.get('userId') == int(sys.argv[1]):
             d_task.append(task)
 
 
