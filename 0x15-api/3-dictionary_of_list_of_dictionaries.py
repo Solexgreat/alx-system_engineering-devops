@@ -8,25 +8,23 @@ from pip._vendor import requests
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/'
 
-    user = '{}users'.format(url)
+    users = '{}users'.format(url)
     req = requests.get(user)
     j_son = req.json()
-    d ={}
-    for task in j_son:
+    dic_task ={}
+    for user in j_son:
         c = []
         userId = task.get("id") 
-        todo = '{}todos?userId={}'.format(url, (userId))
-        req = requests.get(todo)
-        j_sont = req.json()
+        todos = '{}todos?userId={}'.format(url, (userId))
+        req = requests.get(todos)
+        tasks = req.json()
         
-        for dic in j_sont:
-            dict_task = {"username": task.get('username'), 
-                        "task": dic.get('task'),
-                        "completed": dic.get('completed')}                
+        for task in tasks:
+            dict_task = {"username": user.get('username'), 
+                        "task": task.get('task'),
+                        "completed": task.get('completed')}                
             c.append(dict_task)
-        d[str(userId)] = c        
-        
-
+        dic_task[str(userId)] = c        
 filename = 'todo_all_employees.json'  
 with open(filename, mode='a') as f:
-    json.dump(d, f)
+    json.dump(dic_task, f)
