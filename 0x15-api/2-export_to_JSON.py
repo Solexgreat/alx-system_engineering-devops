@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Script that uses JSONPlaceholder API to get information about employee """
 import json
-import requests
+from pip._vendor import requests
 import sys
 
 

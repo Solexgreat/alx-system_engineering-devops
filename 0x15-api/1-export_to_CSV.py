@@ -2,7 +2,7 @@
 """Exports data in the CSV format"""
 
 import csv
-import requests
+from pip._vendor import requests
 import sys
 
 
@@ -12,8 +12,8 @@ if __name__ == "__main__":
     userid = sys.argv[1]
     user = '{}users/{}'.format(url, userid)
     res = requests.get(user)
-    json_o = res.json()
-    name = json_o.get('username')
+    j_son = res.json()
+    name = j_son.get('username')
 
     todos = '{}todos?userId={}'.format(url, userid)
     res = requests.get(todos)
